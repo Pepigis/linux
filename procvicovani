@@ -1,0 +1,128 @@
+ubuntu2204@ubuntu-20:~/Plocha$ cd /
+
+ubuntu2204@ubuntu-20:/$ sudo mkdir STUDENT
+
+[sudo] heslo pro ubuntu2204: 
+
+ubuntu2204@ubuntu-20:/$ cd /STUDENT
+
+ubuntu2204@ubuntu-20:/STUDENT$ sudo touch co1 co2 co3
+
+ubuntu2204@ubuntu-20:/STUDENT$ nano co1
+
+ubuntu2204@ubuntu-20:/STUDENT$ sudo nano co1
+
+ubuntu2204@ubuntu-20:/STUDENT$ sudo chmod -R 777 STUDENT
+
+chmod: nelze přistoupit k 'STUDENT': Adresář nebo soubor neexistuje
+
+ubuntu2204@ubuntu-20:/STUDENT$ sudo chmod -R 777 
+
+chmod: po „777“ chybí operand
+
+Více informací získáte příkazem „chmod --help“.
+
+ubuntu2204@ubuntu-20:/STUDENT$ sudo chmod -R 777 /STUDENT
+
+ubuntu2204@ubuntu-20:/STUDENT$ echo jedna a jedna >> co1
+
+ubuntu2204@ubuntu-20:/STUDENT$ tail -2 co1
+
+ubuntu2204@ubuntu-20:/STUDENT$ sudo touch co1 co2 co3
+
+jedna a jedna
+
+ubuntu2204@ubuntu-20:/STUDENT$ sudo cp co2 > ~/Plocha
+
+bash: /home/ubuntu2204/Plocha: je adresářem
+
+ubuntu2204@ubuntu-20:/STUDENT$ sudo cp co2  ~/Plocha
+
+ubuntu2204@ubuntu-20:/STUDENT$ ls -l > ~/Plocha/zk3
+
+ubuntu2204@ubuntu-20:/STUDENT$ cd ~/Plocha
+
+ubuntu2204@ubuntu-20:~/Plocha$ echo s maturitou je to snadne >> zk3
+
+ubuntu2204@ubuntu-20:~/Plocha$ cat zk3
+
+celkem 4
+
+-rwxrwxrwx 1 root root 213 zář  4 08:43 co1
+
+-rwxrwxrwx 1 root root   0 zář  4 08:41 co2
+
+-rwxrwxrwx 1 root root   0 zář  4 08:41 co3
+
+s maturitou je to snadne
+
+ubuntu2204@ubuntu-20:~/Plocha$ cat zk3 tee | ok
+
+cat: tee: Adresář nebo soubor neexistuje
+
+ok: příkaz nebyl nalezen
+
+ubuntu2204@ubuntu-20:~/Plocha$ zk3 tee | ok
+
+ok: příkaz nebyl nalezen
+
+Příkaz „zk3“ nebyl nalezen, možná jste měli na mysli:
+
+  příkaz „zkg“ z deb balíčku zkg (2.12.0-1)
+
+  příkaz „z3“ z deb balíčku z3 (4.8.12-1)
+
+Vyzkoušejte: sudo apt install <název deb balíčku>
+
+ubuntu2204@ubuntu-20:~/Plocha$ cat zk3 | tee ok
+
+celkem 4
+
+-rwxrwxrwx 1 root root 213 zář  4 08:43 co1
+
+-rwxrwxrwx 1 root root   0 zář  4 08:41 co2
+
+-rwxrwxrwx 1 root root   0 zář  4 08:41 co3
+
+s maturitou je to snadne
+
+ubuntu2204@ubuntu-20:~/Plocha$  cat ok | grep o2 | tee filtr1
+
+-rwxrwxrwx 1 root root   0 zář  4 08:41 co2
+
+ubuntu2204@ubuntu-20:~/Plocha$ mv zk3 /STUDENT/vypis
+
+ubuntu2204@ubuntu-20:~/Plocha$ sudo cp /STUDENT ~/Plocha
+
+cp: -r nezadáno, vynechává se adresář '/STUDENT'
+
+ubuntu2204@ubuntu-20:~/Plocha$ sudo chmod -R 777 /STUDENT
+
+ubuntu2204@ubuntu-20:~/Plocha$ sudo cp /STUDENT ~/Plocha
+
+cp: -r nezadáno, vynechává se adresář '/STUDENT'
+
+ubuntu2204@ubuntu-20:~/Plocha$ sudo cp -R 777 /STUDENT ~/Plocha
+
+cp: nelze získat informace o '777': Adresář nebo soubor neexistuje
+
+ubuntu2204@ubuntu-20:~/Plocha$ ls -l ~/STUDENT
+
+ls: nelze přistoupit k '/home/ubuntu2204/STUDENT': Adresář nebo soubor neexistuje
+
+ubuntu2204@ubuntu-20:~/Plocha$ ls -l STUDENT
+
+celkem 8
+
+-rwxr-xr-x 1 root root 213 zář  4 09:00 co1
+
+-rwxr-xr-x 1 root root   0 zář  4 09:00 co2
+
+-rwxr-xr-x 1 root root   0 zář  4 09:00 co3
+
+-rwxr-xr-x 1 root root 172 zář  4 09:00 vypis
+
+ubuntu2204@ubuntu-20:~/Plocha$ sudo rm -r /STUDENT
+
+ubuntu2204@ubuntu-20:~/Plocha$ sudo rm -r ~/Plocha/STUDENT
+
