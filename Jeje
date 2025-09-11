@@ -1,0 +1,21 @@
+cd /
+sudo mkdir STUDENT
+cd /STUDENT
+sudo touch co1 co2 co3
+sudo nano co1
+sudo chmod -R 777 /STUDENT
+echo jedna a jedna >> co1
+tail -2 co1
+sudo touch co1 co2 co3
+sudo cp co2 ~/Plocha
+ls -l > ~/Plocha/zk3
+cd ~/Plocha
+echo s maturitou je to snadne >> zk3
+cat zk3
+cat zk3 | tee ok
+cat ok | grep o2 | tee filtr1
+mv zk3 /STUDENT/vypis
+sudo chmod -R 777 /STUDENT
+ls -l STUDENT
+sudo rm -r /STUDENT
+sudo rm -r ~/Plocha/STUDENT
