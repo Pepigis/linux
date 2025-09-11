@@ -45,3 +45,11 @@ echo roman je tam
 else
 echo neni tam
 fi
+
+Tvrdý odkaz(In)
+V základím unixovém systému souborů jsou všechny soubory u adresare popsany v tabulce i-uzlu. kazdy i-uzel (i-node) ma svoje cislo, ktere je poradovym cislem polozky v tabulce i-uzlu. Tabulka i-uzlu je umistena na zacatku systemu souboru a ma pevnou velikost stanovenou
+pri vytvareni systemu souboru. V kazdem adresari jsou dvojice udaju :jmeno polozky (souboru nebo podadresare) a cislo i-uzlu. Vsechny ostatni udaje o souboru nebo adresari (vyjma obsahu) jsou v i-uzlu. Diky teto konstrukci muze na jeden soubor (tj. na jeden i-uzel)
+ukazovat vice jmen ze stejneho adresare nebo z ruznych adresaru.
+
+Cislo i-uzlu uvedene v adresari je tzv. tvrdym odkazem na soubor. Ukazuje-li na soubor vice jmen, pak ma soubor vice tvrdych odkazu. Aktualni pocet tvrdych odkazu na soubor je uvdeden v tabulce i-uzlu. Smazanim jmena souboru v adresari snizite pocet tvrdych odkazu o
+jednicku. Jakmile pocet tvrdycvh odkazu dosahne nulove hodnoty, system polozku i.ulzlu smažze
