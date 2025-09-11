@@ -19,3 +19,29 @@ sudo chmod -R 777 /STUDENT
 ls -l STUDENT
 sudo rm -r /STUDENT
 sudo rm -r ~/Plocha/STUDENT
+
+logicke vfyrazy
+lze testovat:
+Typ souboru
+-f soubor existuje soubor a je obycejnym souborem?
+-d soubor existuje soubor a je adresarem?
+Prava k souboru
+-t soubor muzu cist soubor?
+-w soubor muzu zapisovat do souboru?
+-x soubor mohu soubor spustit?
+-() vlastnim soubor?
+
+numericke testy:
+cislo1 -eq cislo2 cisla 1 a 2 se rovnaji
+cislo1 -ne cislo2 cisla se nerovnaji
+cislo1 -lt cislo2 cislo 1 je mensi nez cislo2
+cislo1 -le cislo2 cislo 1 je mensi nebo rovno cislu 2
+cislo1 -gt cislo2 cislo 1 je vetsi nez cislo 2
+cislo1 -ge cislo2 cislo 1 je vetsi nebo rovno cislu 2
+if then else fi
+
+if grep -q roman /etc/passwd; then
+echo roman je tam
+else
+echo neni tam
+fi
