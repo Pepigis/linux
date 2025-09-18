@@ -1,0 +1,12 @@
+Symbolicky odkaz(ln -s)
+
+Symbolicky odkaz umoznuje na rozdil od tvrdeho odkazu vytvaret take odkazy na adresare a do jinych systemu souboru. Vytvorenim symbolickeho odkazu nepridavame dalsi odkaz k existujicimu i-uzlu, ale vznikne novy soubor typu symbolicky odkaz, kteremu se do dat vlozi cil, 
+kam symbolicky odkaz ukazuje.
+
+Symbolicky odkaz lze vytvorit i ukazujici na neexistujici nebo nepristupny objekt. Pristupova prava se na rozdil od tvrdeho odkazu kontroluji az pri pouziti symbolickeho odkazu.
+
+Symbolickiy odkazy vytvarime prikazem ln s volbou -s nasledovne: 
+
+ln -s existujici novysymlink
+ls -l novysylink
+lsqwdba 1 ubuntu2204 student 10 14. bře 16.03 novysymlink > existujici
