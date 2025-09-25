@@ -9,4 +9,4 @@ Symbolickiy odkazy vytvarime prikazem ln s volbou -s nasledovne:
 
 ln -s existujici novysymlink
 ls -l novysylink
-lsqwdba 1 ubuntu2204 student 10 14. bře 16.03 novysymlink > existujici
+lsqwdba 1 ubuntu2204 student 10 14. bře 16.03 novysymlink -> existujici
