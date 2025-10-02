@@ -1,0 +1,1 @@
+Pristupova prava objektu v zakladnim unixovem systemu souboru jsou ulozena ve 12 bitech. Pro popis obsahu techto 12 bitu se pouziva osmickova soustava proto, ze jednou osmickovou cislici josu popsany 3 bity, a proto, ze pristupova prava jsou rozdelena na 4 trojice bitu.
