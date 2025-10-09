@@ -1,1 +1,15 @@
 Pristupova prava objektu v zakladnim unixovem systemu souboru jsou ulozena ve 12 bitech. Pro popis obsahu techto 12 bitu se pouziva osmickova soustava proto, ze jednou osmickovou cislici josu popsany 3 bity, a proto, ze pristupova prava jsou rozdelena na 4 trojice bitu.
+
+spustit soubor muzu pokud mam pravo vstupu do adresare a pravo provedeni souboru(x)
+
+0400 r pro vlastnika
+0200 w pro vlastnika
+0100 x pro vlastnika
+
+chmod go -w soubor (zakaze zapis pro skupinu a ostatni)
+644 (nastavi rw-r--r--)
+=rw,+X (nastavi 'rw' a podle umask a 'x' pro vsechny 'ugo' tehdy, je-li soubor proveditelny alespon pro jednoho z 'ugo' nebo jde o adresar)
+go= (smaze vsechny bity pro 'go')
+u+s (nastaveni SUID)
+g+s (nastaveni SGID)
+a+rwxt (typicke nastaveni pro verejny pracovni adresar)
