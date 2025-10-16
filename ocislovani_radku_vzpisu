@@ -1,1 +1,4 @@
-nl -v 1 data
+nl -v 1 data (Vypise cisla radku souboru)
+
+cat data | grep -v systemd | grep -v /var | tee vystup 
+
