@@ -2,3 +2,6 @@ nl -v 1 data (Vypise cisla radku souboru)
 
 cat data | grep -v systemd | grep -v /var | tee vystup 
 
+cat hotovo_TEST.txt | grep -o '..$' -- hotovo_TEST.txt | tee filtr_TEST.txt
+
+
