@@ -27,32 +27,12 @@ V shellu (např. v `if` podmínkách) lze testovat různé vlastnosti souborů a
 
 ### 2. Logické výrazy (Úvod a tabulky)
 
-```markdown
-## Logické výrazy (testování v `if`)
-
-V shellu (např. v `if` podmínkách) lze testovat různé vlastnosti souborů a čísel.
-
-### Testy typu souboru
-
-| Test | Popis |
-| :--- | :--- |
-| `-f soubor` | Existuje `soubor` a je to obyčejný soubor? |
-| `-d soubor` | Existuje `soubor` a je to adresář? |
-
-### Testy práv k souboru
-
-| Test | Popis |
-| :--- | :--- |
-| `-r soubor` | Mohu číst `soubor`? |
-| `-w soubor` | Mohu zapisovat do `souboru`? |
-| `-x soubor` | Mohu `soubor` spustit? |
-| `-O soubor` | Vlastním `soubor`? |
 
 ## Příklad `if-then-else`
 
 Základní struktura pro větvení skriptu.
 
-```bash
+
 # Příklad: Ověření, zda uživatel 'roman' existuje v systému
 if grep -q roman /etc/passwd; then
   echo "roman je tam"
@@ -62,7 +42,7 @@ fi
 
 ### 4. Tvrdý odkaz (Hard Link)
 
-```markdown
+
 ## Tvrdý odkaz (Hard Link)
 
 V základním unixovém systému souborů jsou všechny soubory a adresáře popsány v tabulce **i-uzlů** (i-node). Každý i-uzel má své číslo, které je pořadovým číslem položky v tabulce i-uzlů. Tato tabulka je umístěna na začátku systému souborů a má pevnou velikost stanovenou při jeho vytváření.
