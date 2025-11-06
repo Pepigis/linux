@@ -1,95 +1,112 @@
-Tady je váš text, upravený do přehlednější podoby a doplněný o vyžádané informace.
-
----
-
-## 🔐 Přístupová práva v Unixu (chmod)
-
+🔐 Přístupová práva v Unixu (chmod)
 Přístupová práva objektu (souboru nebo adresáře) v základním unixovém systému jsou uložena ve 12 bitech. Pro popis obsahu těchto 12 bitů se používá osmičková soustava (oktalová), protože jednou osmičkovou číslicí jsou popsány přesně 3 bity.
 
 Práva jsou rozdělena na 4 trojice bitů (4 skupiny po 3 bitech):
-1.  **Speciální práva** (SUID, SGID, Sticky bit)
-2.  **Vlastník** (User)
-3.  **Skupina** (Group)
-4.  **Ostatní** (Other)
 
-### Základní práva (r, w, x)
+Speciální práva (SUID, SGID, Sticky bit)
 
+Vlastník (User)
+
+Skupina (Group)
+
+Ostatní (Other)
+
+Základní práva (r, w, x)
 Pro každou ze skupin (vlastník, skupina, ostatní) se definují tři základní práva. Každé má svou číselnou hodnotu:
 
-* **r (Read)** - Právo číst / zobrazit obsah. (Hodnota = **4**)
-* **w (Write)** - Právo zapisovat / měnit / mazat obsah. (Hodnota = **2**)
-* **x (Execute)** - Právo spustit (u souboru) / vstoupit (u adresáře). (Hodnota = **1**)
+r (Read) - Právo číst / zobrazit obsah. (Hodnota = 4)
 
-Hodnoty se sčítají. Pokud chce mít vlastník všechna práva (rwx), jeho hodnota je 4+2+1 = **7**. Pokud má mít jen čtení a spuštění (r-x), je to 4+1 = **5**.
+w (Write) - Právo zapisovat / měnit / mazat obsah. (Hodnota = 2)
 
-* `0400` = `r-- --- ---` (pouze vlastník smí číst)
-* `0200` = `-w- --- ---` (pouze vlastník smí zapisovat)
-* `0100` = `--x --- ---` (pouze vlastník smí spouštět)
+x (Execute) - Právo spustit (u souboru) / vstoupit (u adresáře). (Hodnota = 1)
 
----
+Hodnoty se sčítají. Pokud chce mít vlastník všechna práva (rwx), jeho hodnota je 4+2+1 = 7. Pokud má mít jen čtení a spuštění (r-x), je to 4+1 = 5.
 
-### Speciální práva (SUID, SGID, Sticky bit)
+0400 = r-- --- --- (pouze vlastník smí číst)
 
+0200 = -w- --- --- (pouze vlastník smí zapisovat)
+
+0100 = --x --- --- (pouze vlastník smí spouštět)
+
+Speciální práva (SUID, SGID, Sticky bit)
 První ze čtyř osmičkových číslic definuje právě tato speciální práva. I zde se hodnoty sčítají:
 
-* **4** = SUID
-* **2** = SGID
-* **1** = Sticky Bit
+4 = SUID
 
----
+2 = SGID
 
-#### 👑 SUID (Set User ID)
-* **Osmičková hodnota:** `4` (např. `chmod 4755 ...`)
-* **Symbolický zápis:** `u+s` (výpis práv pak ukáže `rwsr-xr-x`)
-* **Co to dělá:**
-    * **Pro soubory:** Když je spustitelný soubor s SUID bitem spuštěn, **běží s právy vlastníka souboru**, nikoliv s právy uživatele, který ho spustil.
-    * **Příklad:** Příkaz `passwd`. Tento program musí upravit soubor `/etc/shadow`, který vlastní `root`. Aby to mohl udělat i běžný uživatel (když si mění *své* heslo), má program `passwd` nastaven SUID bit a vlastní ho `root`. Program se tak na chvíli spustí jako `root`, provede změnu a skončí.
-    * **Pro adresáře:** Většinou se ignoruje.
+1 = Sticky Bit
 
-#### 🤝 SGID (Set Group ID)
-* **Osmičková hodnota:** `2` (např. `chmod 2775 ...`)
-* **Symbolický zápis:** `g+s` (výpis práv pak ukáže `rwxr-sr-x`)
-* **Co to dělá:**
-    * **Pro soubory:** Podobné jako SUID. Program se spustí **s právy skupiny, která soubor vlastní**.
-    * **Pro adresáře:** Velmi užitečné. Všechny nové soubory a podadresáře vytvořené v tomto adresáři **automaticky zdědí skupinu nadřazeného adresáře** (místo primární skupiny uživatele, který soubor vytvořil). To je klíčové pro sdílené složky, kde má celý tým přistupovat k nově vytvořeným souborům.
+👑 SUID (Set User ID)
+Osmičková hodnota: 4 (např. chmod 4755 ...)
 
-#### 📌 Sticky Bit
-* **Osmičková hodnota:** `1` (např. `chmod 1777 ...`)
-* **Symbolický zápis:** `a+t` (výpis práv pak ukáže `rwxrwxrwt`)
-* **Co to dělá:**
-    * **Pro adresáře:** Toto právo se používá téměř výhradně na adresářích. Pokud je nastaveno, soubory v tomto adresáři mohou mazat **pouze jejich vlastníci** (nebo root), bez ohledu na to, zda mají ostatní uživatelé právo zápisu (`w`) do adresáře.
-    * **Příklad:** Adresář `/tmp`. Každý uživatel sem může zapisovat a vytvářet soubory, ale díky Sticky bitu nemůže smazat soubory jiného uživatele.
-    * **Pro soubory:** Dříve se používalo k udržení programu v paměti, dnes je tato funkce na moderních systémech v podstatě ignorována.
+Symbolický zápis: u+s (výpis práv pak ukáže rwsr-xr-x)
 
----
+Co to dělá:
 
-### Příklady použití příkazu `chmod`
+Pro soubory: Když je spustitelný soubor s SUID bitem spuštěn, běží s právy vlastníka souboru, nikoliv s právy uživatele, který ho spustil.
 
-#### Osmičkový (oktalový) zápis
-* `chmod 644 soubor`
-    * Nastaví práva na `rw-r--r--`.
-    * Vlastník: `6` (4+2 = čtení + zápis)
-    * Skupina: `4` (čtení)
-    * Ostatní: `4` (čtení)
+Příklad: Příkaz passwd. Tento program musí upravit soubor /etc/shadow, který vlastní root. Aby to mohl udělat i běžný uživatel (když si mění své heslo), má program passwd nastaven SUID bit a vlastní ho root. Program se tak na chvíli spustí jako root, provede změnu a skončí.
 
-#### Symbolický zápis
-* `chmod go-w soubor`
-    * Zakáže (odstraní) právo na zápis (`-w`) pro skupinu (`g`) a ostatní (`o`).
-* `chmod go= soubor`
-    * Smaže (nastaví na nic) všechna práva pro skupinu (`g`) a ostatní (`o`).
-* `chmod u+s soubor`
-    * Přidá (`+`) vlastníkovi (`u`) právo SUID (`s`).
-* `chmod g+s adresar`
-    * Přidá (`+`) skupině (`g`) právo SGID (`s`).
-* `chmod a+rwxt /verejny_adresar`
-    * Typické nastavení pro veřejný pracovní adresář. Přidá všem (`a` = all) práva pro čtení (`r`), zápis (`w`), vstup (`x`) a nastaví Sticky bit (`t`).
-* `chmod =rw,+X soubor_nebo_adresar`
-    * Zajímavá kombinace. Nastaví všem práva `rw` (`=rw`). Poté přidá právo spuštění (`+X` - velké X) pouze tam, kde to dává smysl: tj. **buď je to adresář**, nebo pokud **soubor už předtím měl právo `x`** alespoň pro jednu kategorii (vlastník, skupina nebo ostatní).
+Pro adresáře: Většinou se ignoruje.
 
-### Důležitá poznámka ke spouštění
+🤝 SGID (Set Group ID)
+Osmičková hodnota: 2 (např. chmod 2775 ...)
 
-> Jak jste správně poznamenal: Pro spuštění souboru (programu) nestačí mít jen právo spuštění (`x`) u samotného souboru. Uživatel musí mít také právo vstupu (`x`) do **všech adresářů** v cestě k tomuto souboru.
+Symbolický zápis: g+s (výpis práv pak ukáže rwxr-sr-x)
 
----
+Co to dělá:
 
-Doufám, že je to takto přehlednější. Mohu vám pomoci s něčím dalším, například s vysvětlením `umask`?
+Pro soubory: Podobné jako SUID. Program se spustí s právy skupiny, která soubor vlastní.
+
+Pro adresáře: Velmi užitečné. Všechny nové soubory a podadresáře vytvořené v tomto adresáři automaticky zdědí skupinu nadřazeného adresáře (místo primární skupiny uživatele, který soubor vytvořil). To je klíčové pro sdílené složky, kde má celý tým přistupovat k nově vytvořeným souborům.
+
+📌 Sticky Bit
+Osmičková hodnota: 1 (např. chmod 1777 ...)
+
+Symbolický zápis: a+t (výpis práv pak ukáže rwxrwxrwt)
+
+Co to dělá:
+
+Pro adresáře: Toto právo se používá téměř výhradně na adresářích. Pokud je nastaveno, soubory v tomto adresáři mohou mazat pouze jejich vlastníci (nebo root), bez ohledu na to, zda mají ostatní uživatelé právo zápisu (w) do adresáře.
+
+Příklad: Adresář /tmp. Každý uživatel sem může zapisovat a vytvářet soubory, ale díky Sticky bitu nemůže smazat soubory jiného uživatele.
+
+Pro soubory: Dříve se používalo k udržení programu v paměti, dnes je tato funkce na moderních systémech v podstatě ignorována.
+
+Příklady použití příkazu chmod
+Osmičkový (oktalový) zápis
+chmod 644 soubor
+
+Nastaví práva na rw-r--r--.
+
+Vlastník: 6 (4+2 = čtení + zápis)
+
+Skupina: 4 (čtení)
+
+Ostatní: 4 (čtení)
+
+Symbolický zápis
+chmod go-w soubor
+
+Zakáže (odstraní) právo na zápis (-w) pro skupinu (g) a ostatní (o).
+
+chmod go= soubor
+
+Smaže (nastaví na nic) všechna práva pro skupinu (g) a ostatní (o).
+
+chmod u+s soubor
+
+Přidá (+) vlastníkovi (u) právo SUID (s).
+
+chmod g+s adresar
+
+Přidá (+) skupině (g) právo SGID (s).
+
+chmod a+rwxt /verejny_adresar
+
+Typické nastavení pro veřejný pracovní adresář. Přidá všem (a = all) práva pro čtení (r), zápis (w), vstup (x) a nastaví Sticky bit (t).
+
+chmod =rw,+X soubor_nebo_adresar
+
+Zajímavá kombinace. Nastaví všem práva rw (=rw). Poté přidá právo spuštění (+X - velké X) pouze tam, kde to dává smysl: tj. buď je to adresář, nebo pokud soubor už předtím měl právo x alespoň pro jednu kategorii (vlastník, skupina nebo ostatní).
