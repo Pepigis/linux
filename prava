@@ -87,3 +87,22 @@ chmod 644 soubor.txt
 # Výsledek: rwxr-xr-x
 # (Typické pro spustitelný skript nebo adresář)
 chmod 755 skript.sh
+
+# Zakáže zápis (w) pro skupinu (g) a ostatní (o)
+chmod go-w soubor.txt
+
+# Smaže všechna práva pro skupinu (g) a ostatní (o)
+chmod go= soubor.txt
+
+# Přidá SUID bit
+chmod u+s soubor
+
+# Přidá SGID bit
+chmod g+s adresar
+
+# Typické nastavení pro veřejný adresář (všichni rwx + sticky bit)
+chmod a+rwxt /tmp/verejny
+
+# Nastaví 'rw' pro všechny A ZÁROVEŇ přidá 'x' (velké X),
+# pokud je to adresář nebo pokud soubor už 'x' měl.
+chmod a=rw,+X adresar
