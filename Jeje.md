@@ -1,3 +1,21 @@
+V shellu (např. v `if` podmínkách) lze testovat různé vlastnosti souborů a čísel.
+
+### Testy typu souboru
+
+| Test | Popis |
+| :--- | :--- |
+| `-f soubor` | Existuje `soubor` a je to obyčejný soubor? |
+| `-d soubor` | Existuje `soubor` a je to adresář? |
+
+### Testy práv k souboru
+
+| Test | Popis |
+| :--- | :--- |
+| `-r soubor` | Mohu číst `soubor`? |
+| `-w soubor` | Mohu zapisovat do `souboru`? |
+| `-x soubor` | Mohu `soubor` spustit? |
+| `-O soubor` | Vlastním `soubor`? |
+
 | Test | Popis |
 | :--- | :--- |
 | `cislo1 -eq cislo2` | Čísla 1 a 2 se rovnají (equal) |
